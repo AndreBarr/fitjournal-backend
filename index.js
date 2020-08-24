@@ -34,7 +34,6 @@ app.post("/exercise", (req, res) => {
       type: req.body.type.toString(),
       sets: req.body.sets.toString(),
       reps: req.body.reps.toString(),
-      created: new Date(),
     };
 
     exercises.insert(exercise).then((createdExercise) => {
