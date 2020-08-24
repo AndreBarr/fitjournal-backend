@@ -30,6 +30,7 @@ function isValidExercise(exercise) {
 app.post("/exercise", (req, res) => {
   if (isValidExercise(req.body)) {
     // insert into db...
+    console.log(req.body);
     const exercise = {
       type: req.body.type.toString(),
       sets: req.body.sets.toString(),
@@ -45,6 +46,15 @@ app.post("/exercise", (req, res) => {
       message: "Exercise requires type, sets and reps!",
     });
   }
+});
+
+app.delete("/exercise", (req, res) => {
+  const exerciseID = {
+    _id: req.body._id.toString(),
+  };
+  exercises.remove(exerciseID).then((removedExercise) => {
+    res.json(removedExercise);
+  });
 });
 
 app.listen(5000, () => {
